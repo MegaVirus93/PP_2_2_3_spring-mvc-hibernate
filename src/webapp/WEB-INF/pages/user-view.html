@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>E-mail</th>
+        </tr>
+        <tr th:each="user : ${user_list}">
+            <td th:utext="${user.id}"></td>
+            <td th:utext="${user.firstName}"></td>
+            <td th:utext="${user.lastName}"></td>
+            <td th:utext="${user.email}"></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <input type="button" value="Add" onclick="window.location.href = 'add'"/>
+
+
+<!--    <form action="add" method="get">-->
+<!--        <label>-->
+<!--            <input type="text" name="user_name" value="MyName">-->
+<!--            <input type="text" name="user_lastname" value="MyLastName">-->
+<!--            <input type="text" name="user_email" value="E-mail">-->
+<!--        </label>-->
+<!--        <input type="submit">-->
+<!--    </form>-->
+
+<!--    <a href="add">Add user</a>-->
+</div>
+</body>
+</html>

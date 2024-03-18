@@ -3,40 +3,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>User View</title>
 </head>
 <body>
-<div>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Last name</th>
-            <th>E-mail</th>
-        </tr>
-        <tr th:each="user : ${user_list}">
-            <td th:utext="${user.id}"></td>
-            <td th:utext="${user.firstName}"></td>
-            <td th:utext="${user.lastName}"></td>
-            <td th:utext="${user.email}"></td>
-        </tr>
-    </table>
 
-    <br>
+<table border="1">
+    <td th:utext="${user.getId()}">id</td>
+    <td th:utext="${user.getFirstName()}">name</td>
+    <td th:utext="${user.getLastName()}">lastname</td>
+    <td th:utext="${user.getEmail()}">email</td>
+</table>
 
-    <input type="button" value="Add" onclick="window.location.href = 'add'"/>
+<br>
 
+<a th:href="@{/{id}/edit(id=${user.getId()})}">Edit</a>
 
-<!--    <form action="add" method="get">-->
-<!--        <label>-->
-<!--            <input type="text" name="user_name" value="MyName">-->
-<!--            <input type="text" name="user_lastname" value="MyLastName">-->
-<!--            <input type="text" name="user_email" value="E-mail">-->
-<!--        </label>-->
-<!--        <input type="submit">-->
-<!--    </form>-->
+<br>
 
-<!--    <a href="add">Add user</a>-->
-</div>
+<form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete">
+</form>
+
 </body>
+</html>
 </html>

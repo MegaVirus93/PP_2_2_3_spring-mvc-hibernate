@@ -29,4 +29,22 @@ public class UserServiceImp implements UserService {
     public List<User> listUsers() {
         return userDao.listUsers();
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public User getUserById(long id) {
+        return userDao.getUserById(id);
+    }
+
+    @Transactional
+    @Override
+    public void update(User user, long id) {
+        userDao.update(user, id);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id) {
+        userDao.delete(id);
+    }
 }

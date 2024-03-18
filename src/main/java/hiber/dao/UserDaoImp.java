@@ -29,4 +29,27 @@ public class UserDaoImp implements UserDao {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User", User.class);
         return query.getResultList();
     }
+
+    @Override
+    public User getUserById(long id) {
+        return sessionFactory.getCurrentSession().byId(User.class).load(id);
+    }
+
+    @Override
+    public void update(User user, long id) {
+        User userToBeUpdated = getUserById(id);
+        userToBeUpdated.setFirstName(user.getFirstName());
+        userToBeUpdated.setLastName(user.getLastName());
+        userToBeUpdated.setEmail(user.getEmail());
+    }
+
+    @Override
+    public void delete(long id) {
+        sessionFactory.getCurrentSession().delete(getUserById(id));
+    }
+
+    @Override
+    public void remove(long id) {
+        sessionFactory.getCurrentSession().remove(getUserById(id));
+    }
 }

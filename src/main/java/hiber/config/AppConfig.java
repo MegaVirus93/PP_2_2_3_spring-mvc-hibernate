@@ -10,6 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -60,4 +63,26 @@ public class AppConfig {
         transactionManager.setSessionFactory(getSessionFactory().getObject());
         return transactionManager;
     }
+
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
+//        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+//        factoryBean.setDataSource(getDataSource());
+//
+//        Properties props = new Properties();
+//        props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+//        props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+//
+//        factoryBean.setJpaProperties(props);
+//        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+//
+//        return factoryBean;
+//    }
+//
+//    @Bean
+//    JpaTransactionManager getJpaTransactionManager() {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(getEntityManagerFactory().getNativeEntityManagerFactory());
+//        return transactionManager;
+//    }
 }

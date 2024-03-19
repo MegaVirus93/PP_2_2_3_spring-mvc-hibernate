@@ -47,9 +47,4 @@ public class UserDaoImp implements UserDao {
     public void delete(long id) {
         sessionFactory.getCurrentSession().delete(getUserById(id));
     }
-
-    @Override
-    public void remove(long id) {
-        sessionFactory.getCurrentSession().remove(getUserById(id));
-    }
 }

@@ -1,56 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Edit</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<form method="POST" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
-    <input type="hidden" name="_method" value="PATCH">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Edit</title>
+    </head>
 
-    <label for="name">Name</label>
-    <input type="text" th:field="*{firstName}" id="name"/>
+    <body>
+        <form th:method="POST" th:action="@{/save/(id=${user.getId()})}" th:object="${user}">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{firstName}" id="name"/>
 
-    <br>
+            <br>
 
-    <label for="lastname">Lastname</label>
-    <input type="text" th:field="*{lastName}" id="lastname"/>
+            <label for="lastname">Lastname</label>
+            <input type="text" th:field="*{lastName}" id="lastname"/>
 
-    <br>
+            <br>
 
-    <label for="email">E-mail</label>
-    <input type="text" th:field="*{email}" id="email"/>
+            <label for="email">E-mail</label>
+            <input type="text" th:field="*{email}" id="email"/>
 
-    <br>
+            <br>
 
-    <input type="submit" value="Update">
-
-</form>
-
-<!--<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">-->
-
-<!--    <label for="name">Name</label>-->
-<!--    <input type="text" th:field="*{firstName}" id="name"/>-->
-
-<!--    <br>-->
-
-<!--    <label for="lastname">Lastname</label>-->
-<!--    <input type="text" th:field="*{lastName}" id="lastname"/>-->
-
-<!--    <br>-->
-
-<!--    <label for="email">E-mail</label>-->
-<!--    <input type="text" th:field="*{email}" id="email"/>-->
-
-<!--    <br>-->
-
-<!--    <input type="submit" value="Update">-->
-
-<!--</form>-->
-
-
-</body>
-</html>
+            <input type="submit" value="Update">
+        </form>
+    </body>
 </html>

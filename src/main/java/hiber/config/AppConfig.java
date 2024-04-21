@@ -64,6 +64,8 @@ public class AppConfig {
         return transactionManager;
     }
 
+//    Попытка вместо SessionFactory использовать EntityManager:
+
 //    @Bean
 //    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
 //        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();

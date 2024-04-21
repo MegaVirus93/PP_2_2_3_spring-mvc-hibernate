@@ -38,37 +38,40 @@ public class UserController {
         return "user-list";
     }
 
-    @GetMapping("/{id}")
-    public String viewUser(@PathVariable("id") long id, Model model) {
+    @GetMapping(value = "/view")
+    public String viewUser(@RequestParam(value = "id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "user-view";
+
     }
 
     @GetMapping(value = "/new")
     public String newUser(@ModelAttribute("user") User user) {
         return "user-new";
     }
+
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/";
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") long id, Model model) {
+    @GetMapping(value = "/edit")
+    public String edit(@RequestParam(value = "id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "user-edit";
     }
 
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+    @PostMapping(value = "/save")
+    public String update(@RequestParam(value = "id", defaultValue = "1") long id, @ModelAttribute("user") User user) {
         userService.update(user, id);
         return "redirect:/";
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") long id) {
+    @PostMapping("/delete")
+    public String delete(@RequestParam(value = "id") long id) {
         userService.delete(id);
         return "redirect:/";
     }
+
 }

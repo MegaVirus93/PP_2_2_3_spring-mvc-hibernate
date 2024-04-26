@@ -38,8 +38,8 @@ public class UserDaoEmImp implements UserDao {
 
     @Override
     public void update(User user, long id) {
-        User userToBeUpdated = getUserById(id);//получаем ссылку на обхект по ИД
-        userToBeUpdated.setFirstName(user.getFirstName());//Устанавливаем изменения Vх3
+        User userToBeUpdated = getUserById(id);
+        userToBeUpdated.setFirstName(user.getFirstName());
         userToBeUpdated.setLastName(user.getLastName());
         userToBeUpdated.setEmail(user.getEmail());
     }

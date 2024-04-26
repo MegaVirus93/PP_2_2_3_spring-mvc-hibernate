@@ -5,8 +5,10 @@ import hiber.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -17,8 +19,6 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-
-        userService.add(new User("Vladimir", "Kurtsev", "vk@vk.com"));
 
         User user2 = new User("User2", "Lastname2", "user2@mail.ru");
         User user3 = new User("User3", "Lastname3", "user3@mail.ru");
@@ -51,7 +51,10 @@ public class UserController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("user") User user) {
+    public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user-new";
+        }
         userService.add(user);
         return "redirect:/";
     }
@@ -63,7 +66,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/save")
-    public String update(@RequestParam(value = "id") long id, @ModelAttribute("user") User user) {
+    public String update(@RequestParam(value = "id") long id, @ModelAttribute("user") @Valid User user,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user-edit";
+        }
         userService.update(user, id);
         return "redirect:/";
     }

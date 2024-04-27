@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -29,11 +28,7 @@ public class UserDaoEmImp implements UserDao {
 
     @Override
     public User getUserById(long id) {
-        TypedQuery<User> query = entityManager.createQuery(
-                "select u from User u where id = :id", User.class
-        );
-        query.setParameter("id", id);
-        return query.getResultList().stream().findAny().orElse(null);
+        return entityManager.find(User.class, id);
     }
 
     @Override

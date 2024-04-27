@@ -22,7 +22,7 @@ public class UserDaoEmImp implements UserDao {
     @Override
     public List<User> listUsers() {
         return entityManager.createQuery(
-                "select u from User u", User.class
+                "from User", User.class
         ).getResultList();
     }
 
